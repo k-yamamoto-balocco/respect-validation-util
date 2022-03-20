@@ -1,0 +1,65 @@
+{
+    "name": "k-yamamoto-balocco/respect-validation-util",
+    "authors": [
+        {
+            "name": "k-yamamoto-balocco",
+            "email": "k-yamamoto-balocco@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "respect/validation": "^2.2",
+        "k-yamamoto-balocco/common-structures": "0.1.4"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/k-yamamoto-balocco/common-structures.git"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "GitBalocco\\RespectValidationUtil\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GitBalocco\\RespectValidationUtil\\Test\\": "test/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "mockery/mockery": "*",
+        "vimeo/psalm": "*",
+        "infection/infection": "*",
+        "maglnet/composer-require-checker": "*",
+        "slevomat/coding-standard": "*",
+        "squizlabs/php_codesniffer": "*",
+        "php-parallel-lint/php-parallel-lint": "*",
+        "phpmetrics/phpmetrics": "*",
+        "pdepend/pdepend": "*"
+    },
+    "scripts": {
+        "syntax": "vendor/bin/parallel-lint ./src ./tests --exclude ./vendor",
+        "phpunit": "phpdbg -qrr vendor/bin/phpunit --coverage-html qa/coverage",
+        "infection": "vendor/bin/infection",
+        "psalm": "phpdbg -qrr vendor/bin/psalm --show-info=false",
+        "phpcs": "phpdbg -qrr vendor/bin/phpcs  ./src --extensions=php --tab-width=4 -sp --standard=./ruleset.xml",
+        "phpcbf": "phpdbg -qrr vendor/bin/phpcbf ./src --extensions=php --tab-width=4 -sp --standard=./ruleset.xml",
+        "pdpend": "vendor/bin/pdepend --summary-xml=/tmp/summary.xml --jdepend-chart=./qa/pdpend/jdepend.svg --overview-pyramid=./qa/pdpend/pyramid.svg ./src",
+        "phpmetrics": "vendor/bin/phpmetrics --report-html=qa/phpmetrics/report src/",
+        "qa": [
+            "composer syntax",
+            "composer psalm",
+            "composer phpcs",
+            "composer phpunit",
+            "composer infection"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "infection/extension-installer": true
+        }
+    }
+}
