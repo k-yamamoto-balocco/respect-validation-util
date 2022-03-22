@@ -34,7 +34,7 @@ class JapanPostalCode extends AbstractRule
 {
     public function validate($input): bool
     {
-        return (preg_match('/^([0-9]{3})(-?)([0-9]{4})?$/i', $input)===1);
+        return (preg_match('/^([0-9]{3})(-?)([0-9]{4})$/i', $input)===1);
     }
 
 }
