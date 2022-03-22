@@ -103,14 +103,14 @@ class ValidationResultCollection extends AbstractValueCollection implements Vali
 
     public function getMessage(): string
     {
-        //ココで再帰的に取得する・・・で良いのかな？？？
         /** @var ValidationResultInterface $validationResultInterface */
-        foreach ($this->getIterator() as $validationResultInterface) {
-            if(is_a($validationResultInterface,ValidationResultCollection::class)){
-                return $validationResultInterface->getMessage();
+        foreach ($this as $validationResultInterface) {
+            $message = $validationResultInterface->getMessage();
+            if ($message !== "") {
+                return $message;
             }
-            return $validationResultInterface->getMessage();
         }
+        return '';
     }
 
 
